@@ -1,18 +1,21 @@
 const USERNAME = process.env.USERNAME;
 
 exports.handler = async (event, context) => {
+  let result = null;
+  
   if (!USERNAME) {
     return context.fail(`Must set USERNAME envvar!`);
   }
 
-  let result = null;
-
   try {
     const exampleParam = event.jimmy;
-    result = JSON.stringify({
+    const exampleParamWithFallback = event.jimmy2 ? event.jimmy2 : null;
+
+    result = {
       hello: USERNAME,
-      param: exampleParam
-    });
+      param: exampleParam,
+      paramWithFallback: exampleParamWithFallback
+    };
   } catch (error) {
     return context.fail(error);
   } finally {
