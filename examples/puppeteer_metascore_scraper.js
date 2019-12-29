@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
   let result = null;
   let browser = null;
 
-  const urlPath = event.urlPath;
+  const urlPath = event.queryStringParameters.urlPath;
   if (!urlPath) {
     return context.fail('Must provide a urlPath!');
   }
