@@ -11,11 +11,11 @@ exports.handler = async (event, context) => {
     const exampleParam = event.jimmy;
     const exampleParamWithFallback = event.jimmy2 ? event.jimmy2 : null;
 
-    result = {
+    result = JSON.stringify({
       hello: USERNAME,
       param: exampleParam,
-      paramWithFallback: exampleParamWithFallback
-    };
+      paramWithFallback: exampleParamWithFallback,
+    }, null, 2);
   } catch (error) {
     return context.fail(error);
   } finally {
